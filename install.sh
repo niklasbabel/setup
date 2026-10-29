@@ -65,6 +65,12 @@ fi
 # ---- 2. GitHub login (browser, no token) -------------------------------------
 if ! gh auth status --hostname github.com >/dev/null 2>&1; then
   echo "==> GitHub login: copy the one-time code, then confirm it in the browser."
+  if [ "$PLATFORM" = mac ]; then
+    # 1Password (where a passkey might live) isn't installed yet at this point.
+    echo "    Passkey: Safari offers your iCloud Keychain passkey only once you're signed in"
+    echo "    with your Apple Account and iCloud Keychain is on (System Settings → Apple Account"
+    echo "    → iCloud → Passwords). Otherwise: 'Use a passkey from another device' + iPhone QR."
+  fi
   gh auth login --hostname github.com --git-protocol https --web
 fi
 gh auth setup-git --hostname github.com
