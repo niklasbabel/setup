@@ -90,8 +90,7 @@ fi
 
 # ---- 4. Bootstrap ------------------------------------------------------------
 if [ -n "${CS_NO_BOOTSTRAP:-}" ]; then
-  echo "==> Cloned. Next: cd ${DEST}/${PLATFORM} && ./bootstrap.sh"
+  echo "==> Cloned. Next: ${DEST}/setup.sh"
   exit 0
 fi
-cd "$DEST/$PLATFORM"
-exec ./bootstrap.sh
+exec "$DEST/setup.sh"
